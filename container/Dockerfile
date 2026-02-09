@@ -30,7 +30,7 @@ ENV AGENT_BROWSER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Install agent-browser and claude-code globally
-RUN npm install -g agent-browser @anthropic-ai/claude-code
+RUN npm config set registry https://registry.npmmirror.com && npm install -g agent-browser @anthropic-ai/claude-code
 
 # Create app directory
 WORKDIR /app
@@ -39,7 +39,7 @@ WORKDIR /app
 COPY agent-runner/package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm config set registry https://registry.npmmirror.com && npm install
 
 # Copy source code
 COPY agent-runner/ ./
